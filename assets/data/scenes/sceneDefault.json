@@ -1,0 +1,16 @@
+{
+  "layout": "assets/data/tileSheet.json",
+  "tileset": "assets/data/tileset/default.json",
+  "layers": [
+    {
+      "layer": 0,
+      "type": "visual",
+      "source": "collision"
+    },
+    {
+      "layer": 1,
+      "type": "collision",
+      "source": "collision"
+    }
+  ]
+}

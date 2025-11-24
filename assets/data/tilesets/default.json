@@ -1,0 +1,13 @@
+{
+  "0": { "name": "empty", "solid": false, "color": [0, 0, 0, 0] },
+  "1": {
+    "name": "collision",
+    "solid": true,
+    "color": [100, 200, 100, 255]
+  },
+  "2": {
+    "name": "mid-bg",
+    "solid": false,
+    "color": [120, 120, 120, 255]
+  }
+}
