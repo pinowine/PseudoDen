@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sketch</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Pseudo Grotto</title>
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-  <body>
-    <script src="components/RigidBody.js"></script>
-    <script src="components/World.js"></script>
-    <script src="components/Player.js"></script>
-    <script src="components/Hunter.js"></script>
-    <script src="sketch.js"></script>
-  </body>
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+</head>
+
+<body>
+  <div id="ui-wrapper">
+    <h1 id="title">Pseudo Grotto</h1>
+    <div id="instructions">
+      <p>Move: AD / ←→ ，Jump: Space。Resizing needs to refresh.</p>
+      <p>Win when you reach the right goal (undeveloped, you can only be eaten).</p>
+    </div>
+  </div>
+
+  <div id="canvas-wrapper">
+
+  </div>
+  <script src="components/Math.js"></script>
+  <script src="components/RigidBody.js"></script>
+  <script src="components/World.js"></script>
+  <script src="components/Player.js"></script>
+  <script src="components/Hunter.js"></script>
+  <script src="sketch.js"></script>
+</body>
+
 </html>

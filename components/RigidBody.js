@@ -7,7 +7,12 @@ class RigidBody {
     riseGravityScale = 1.2, // rise gravity multiplier
     fallGravityScale = 2.0, // fall gravity multiplier
     lowJumpMultiplier = 2.0, // if jump key released early
-    maxFallSpeed = 20 // terminal velocity
+    maxFallSpeed = 20, // terminal velocity
+    groundAccel = 0.5, // horizontal acceleration
+    airAccel = 0.35, // horizontal acceleration in air
+    maxHorizontalSpeed = 5, // max horizontal speed
+    friction = 0.8, // ground friction
+    coyoteTimeMs = 200 // coyote time duration in ms
   }) {
     // position and velocity vectors
     this.pos = createVector(x, y);
@@ -20,21 +25,48 @@ class RigidBody {
     this.fallGravityScale = fallGravityScale;
     this.lowJumpMultiplier = lowJumpMultiplier;
     this.maxFallSpeed = maxFallSpeed;
+    this.groundAccel = groundAccel;
+    this.airAccel = airAccel;
+    this.maxHorizontalSpeed = maxHorizontalSpeed;
+    this.friction = friction;
 
     // state flags
     this.onGround = false;
     this.onWall = false;
     this.isRising = false;
+
+    // timer
+    this.lastOnGroundTime = -Infinity;
+    this.coyoteTimeMs = coyoteTimeMs;
   }
 
   update(scene, input) {
-    this.pos.x += this.vel.x;
+    this.applyAcceleration(input);
     this.resolveHorizontalCollision(scene);
 
     this.applyGravity(input);
     this.resolveVerticalCollision(scene);
 
     this.resolveEdgeCollision(WORLD_WIDTH, WORLD_HEIGHT);
+  }
+
+  applyAcceleration(input) {
+    const direction = input ? input.moveDir : 0;
+    const accel = this.onGround ? this.groundAccel : this.airAccel;
+    // console.log("Applying acceleration:", accel, "Direction:", direction);
+
+    // horizontal movement
+    if (direction !== 0) {
+      this.vel.x += accel * direction;
+    } else {
+      this.vel.x *= this.friction;
+      if (abs(this.vel.x) < 0.01) this.vel.x = 0; // stop completely if very slow
+    }
+
+    // cap horizontal speed
+    this.vel.x = constrain(this.vel.x, -this.maxHorizontalSpeed, this.maxHorizontalSpeed);
+
+    this.pos.x += this.vel.x;
   }
 
   applyGravity(input) {
@@ -111,7 +143,6 @@ class RigidBody {
         this.vel.y = 0; // stop downward velocity
         this.pos.y = floor(footY / TILE_SIZE) * TILE_SIZE - r; // align to top of tile
         this.onGround = true; // mark as on ground
-        this.lastJumpPos = this.pos.copy(); // update last jump position
       }
     }
 
@@ -128,7 +159,7 @@ class RigidBody {
 
       if (hitTopLeft || hitTopRight) {
         this.vel.y = 0; // stop upward velocity
-        this.pos.y = (floor(headY / TILE_SIZE) + 1) * TILE_SIZE + r; // align to bottom of tile
+        // this.pos.y = (floor(headY / TILE_SIZE) + 1) * TILE_SIZE + r; // align to bottom of tile
       }
     }
   }
@@ -159,9 +190,13 @@ class RigidBody {
   }
 
   jump(power = 10) {
-    if (this.onGround) {
+    const now = millis();
+    const canUseCoyote = (now - this.lastOnGroundTime) <= this.coyoteTimeMs;
+
+    if (this.onGround || canUseCoyote) {
       this.vel.y = -power;
       this.onGround = false;
+      this.lastOnGroundTime = -Infinity; // reset coyote timer
     }
   }
 

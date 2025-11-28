@@ -11,6 +11,16 @@
       "layer": 1,
       "type": "collision",
       "source": "collision"
+    },
+    {
+      "layer": 2,
+      "type": "wall",
+      "source": "wall"
+    },
+    {
+      "layer": 3,
+      "type": "bg",
+      "source": "bg"
     }
   ]
 }
