@@ -15,7 +15,7 @@ class Player {
     const right = keyIsDown(68) || keyIsDown(RIGHT_ARROW); // D key
     const moveDir = (left ? -1 : 0) + (right ? 1 : 0); // -1 = left, 0 = no move, 1 = right
 
-    const jumpHeld = keyIsDown(32) // space
+    const jumpHeld = keyIsDown(32); // space
     const input = { moveDir, jumpHeld };
 
     this.body.update(scene, input);
@@ -37,33 +37,48 @@ class Player {
     this.eyePos = v.mult(dEye);
   }
 
-  draw() {
+  draw(mode = "default") {
     push();
-
     translate(this.body.pos.x, this.body.pos.y);
-    noStroke();
 
-    fill(255, 255, 255);
-    ellipse(0, 0, this.body.radius * 2);
-
-    const eyeR = this.body.radius * 0.9;
-    const pupilR = this.body.radius * 0.45;
-
-    noFill();
-    stroke(0);
-    strokeWeight(1.5);
-    ellipse(this.eyePos.x, this.eyePos.y, eyeR);
-
-    fill(0);
-    noStroke();
-    ellipse(this.eyePos.x, this.eyePos.y, pupilR);
+    switch (mode) {
+      case "default":
+        fill(255);
+        noStroke();
+        ellipse(0, 0, this.body.radius * 2);
+        stroke(0);
+        ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.9);
+        fill(0);
+        ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.45);
+        break;
+      case "abstract":
+        stroke(255);
+        noFill();
+        strokeWeight(2);
+        ellipse(0, 0, this.body.radius * 2);
+        break;
+      case "devmode":
+        // default drawing
+        fill(255);
+        noStroke();
+        ellipse(0, 0, this.body.radius * 2);
+        stroke(0);
+        ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.9);
+        fill(0);
+        ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.45);
+        // debug
+        stroke(0, 255, 255);
+        const debugVel = this.body.vel.copy().mult(5);
+        line(0, 0, debugVel.x, debugVel.y);
+        break;
+    }
 
     pop();
   }
 }
 
 function keyPressed() {
-  if (key === ' ' && player) {
+  if (key === " " && player) {
     player.jump();
   }
 }

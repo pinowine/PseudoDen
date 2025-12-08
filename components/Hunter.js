@@ -22,7 +22,6 @@ class Snake {
     const target = this.mind.getTarget();
 
     if (target) {
-
       // first find the tile of snake head and player
       const headTile = worldToTile(this.body.head.x, this.body.head.y);
       const targetTile = worldToTile(target.x, target.y);
@@ -31,13 +30,16 @@ class Snake {
       const keyNow = `${targetTile.col},${targetTile.row}`;
       const keyLast = this.lastTargetTile;
 
-      if (!this.body.currentPath ||
+      if (
+        !this.body.currentPath ||
         this.body.pathIndex >= this.body.currentPath.length ||
-        keyNow !== keyLast) {
-
+        keyNow !== keyLast
+      ) {
         const path = this.pathfinder.findPath(
-          headTile.col, headTile.row,
-          targetTile.col, targetTile.row
+          headTile.col,
+          headTile.row,
+          targetTile.col,
+          targetTile.row
         );
 
         if (path) {
@@ -50,7 +52,7 @@ class Snake {
     this.body.update(deltaTime);
   }
 
-  draw() {
+  draw(mode = "default") {
     let alertState = "idle";
 
     if (this.sense.lastSeenPos && this.sense.seeTimer < 200) {
@@ -59,10 +61,87 @@ class Snake {
       alertState = "heard";
     }
 
-    this.body.draw(alertState);
+    this.body.draw(alertState, mode);
+
+    if (mode === "devmode") {
+      this.drawPath();
+      this.drawSensors();
+    }
+  }
+
+  // helping functions
+  drawPath() {
+    const path = this.body.currentPath;
+    if (!path) return;
+
+    push();
+    stroke(0, 255, 255, 150);
+    strokeWeight(2);
+    noFill();
+    beginShape();
+    // draw path
+    path.forEach((tile) => {
+      const pos = tileToWorld(tile.col, tile.row);
+      vertex(pos.x, pos.y);
+    });
+    endShape();
+    pop();
+  }
+
+  drawSensors() {
+    const head = this.body.head;
+    const config = this.config;
+
+    push();
+    noFill();
+
+    // hearing range
+    stroke(255, 255, 0, 80);
+    strokeWeight(2);
+    ellipse(head.x, head.y, config.hearingRange * 2);
+
+    // vision range
+    stroke(0, 255, 0, 80);
+    strokeWeight(2);
+    ellipse(head.x, head.y, config.visionRange * 2);
+
+    // vision fov
+    const faceDir = this.body.getFacingDir();
+    const base = atan2(faceDir.y, faceDir.x);
+    const half = config.visionFov * 0.5;
+    stroke(0, 255, 0, 150);
+    line(
+      head.x,
+      head.y,
+      head.x + cos(base - half) * config.visionRange,
+      head.y + sin(base - half) * config.visionRange
+    );
+    line(
+      head.x,
+      head.y,
+      head.x + cos(base + half) * config.visionRange,
+      head.y + sin(base + half) * config.visionRange
+    );
+
+    // last seen
+    if (this.sense.lastSeenPos) {
+      stroke(255, 0, 0);
+      strokeWeight(2);
+      point(this.sense.lastSeenPos.x, this.sense.lastSeenPos.y);
+    }
+
+    // last heard
+    if (this.sense.lastHeardPos) {
+      stroke(255, 255, 0);
+      strokeWeight(2);
+      point(this.sense.lastHeardPos.x, this.sense.lastHeardPos.y);
+    }
+
+    pop();
   }
 }
 
+// navigation
 class SnakeNav {
   constructor(scene) {
     this.scene = scene;
@@ -101,121 +180,12 @@ class SnakeNav {
     return false;
   }
 
-  // --- API ---
+  // API
   isWalkable(col, row) {
     if (col < 0 || col >= this.cols || row < 0 || row >= this.rows) {
       return false;
     }
     return this.walkable[row][col];
-  }
-}
-
-// a star pathfinder class
-class AStarPathfinder {
-  constructor(nav) {
-    this.nav = nav; // SnakeNav
-  }
-
-  findPath(startCol, startRow, goalCol, goalRow) {
-    // if start or goal is not walkable, return null
-    if (!this.nav.isWalkable(goalCol, goalRow)) return null;
-    if (!this.nav.isWalkable(startCol, startRow)) return null;
-
-    const startKey = `${startCol},${startRow}`;
-    const goalKey = `${goalCol},${goalRow}`;
-
-    const open = new Map();   // key -> node
-    const closed = new Set(); // key
-
-    function heuristic(c1, r1, c2, r2) {
-      // manhattan distance
-      return abs(c1 - c2) + abs(r1 - r2);
-    }
-
-    const startNode = {
-      col: startCol,
-      row: startRow,
-      g: 0,
-      h: heuristic(startCol, startRow, goalCol, goalRow),
-      f: 0,
-      parent: null
-    };
-    startNode.f = startNode.g + startNode.h;
-
-    open.set(startKey, startNode);
-
-    const neighborOffsets = [
-      { dc: 1, dr: 0 },
-      { dc: -1, dr: 0 },
-      { dc: 0, dr: 1 },
-      { dc: 0, dr: -1 },
-    ];
-
-    while (open.size > 0) {
-      // 1. find the node with the smallest f
-      let currentKey = null;
-      let currentNode = null;
-      for (let [k, node] of open.entries()) {
-        if (!currentNode || node.f < currentNode.f) {
-          currentNode = node;
-          currentKey = k;
-        }
-      }
-
-      if (!currentNode) break;
-
-      // end condition: reached goal
-      if (currentNode.col === goalCol && currentNode.row === goalRow) {
-        return this.reconstructPath(currentNode);
-      }
-
-      open.delete(currentKey);
-      closed.add(currentKey);
-
-      // 2. expand neighbors
-      for (let { dc, dr } of neighborOffsets) {
-        const nc = currentNode.col + dc;
-        const nr = currentNode.row + dr;
-        const nKey = `${nc},${nr}`;
-
-        if (closed.has(nKey)) continue;
-        if (!this.nav.isWalkable(nc, nr)) continue;
-
-        const tentativeG = currentNode.g + 1; // 4-directional movement cost = 1
-
-        let neighbor = open.get(nKey);
-        if (!neighbor) {
-          neighbor = {
-            col: nc,
-            row: nr,
-            g: tentativeG,
-            h: heuristic(nc, nr, goalCol, goalRow),
-            f: 0,
-            parent: currentNode
-          };
-          neighbor.f = neighbor.g + neighbor.h;
-          open.set(nKey, neighbor);
-        } else if (tentativeG < neighbor.g) {
-          neighbor.g = tentativeG;
-          neighbor.parent = currentNode;
-          neighbor.f = neighbor.g + neighbor.h;
-        }
-      }
-    }
-
-    // no path found
-    return null;
-  }
-
-  reconstructPath(node) {
-    const path = [];
-    let cur = node;
-    while (cur) {
-      path.push({ col: cur.col, row: cur.row });
-      cur = cur.parent;
-    }
-    path.reverse();
-    return path;
   }
 }
 
@@ -313,9 +283,10 @@ class SnakeBody {
     this.speed = this.config.moveSpeed * m;
   }
 
-  draw(alertState = "idle") {
+  draw(alertState = "idle", mode = "default") {
     push();
 
+    // color settings
     let baseColor;
     switch (alertState) {
       case "seen":
@@ -328,69 +299,102 @@ class SnakeBody {
         baseColor = color(60, 180, 100);
         break;
     }
+    let pupilColor;
+    switch (alertState) {
+      case "seen":
+        pupilColor = color(255, 40, 40);
+        break;
+      case "heard":
+        pupilColor = color(255, 220, 80);
+        break;
+      default:
+        pupilColor = color(40, 80, 40);
+        break;
+    }
 
-    noStroke();
-
+    // calculations
     const headRadius = this.thickness;
     const tailRadius = this.thickness * 0.4;
     const n = this.segments.length;
-
-    for (let i = 0; i < n; i++) {
-      const seg = this.segments[i];
-      const t = n > 1 ? i / (n - 1) : 0;
-
-      const r = lerp(headRadius, tailRadius, t);
-      const alpha = lerp(255, 120, t);
-
-      const c = color(
-        red(baseColor),
-        green(baseColor),
-        blue(baseColor),
-        alpha
-      );
-
-      fill(c);
-      circle(seg.x, seg.y, r * 2);
-    }
-
     const head = this.segments[0] || this.head;
     const headR = headRadius;
-
     const dir = this.facingDir.copy();
     if (dir.magSq() === 0) {
       dir.set(1, 0);
     }
     dir.setMag(headR * 0.6);
-
     const side = createVector(-dir.y, dir.x);
     side.setMag(headR * 0.45);
-
     const eyeBase = p5.Vector.add(head, dir);
     const leftEye = p5.Vector.add(eyeBase, side);
     const rightEye = p5.Vector.sub(eyeBase, side);
-
-    fill(255);
-    stroke(0, 80);
-    strokeWeight(1);
-    circle(leftEye.x, leftEye.y, headR * 0.9);
-    circle(rightEye.x, rightEye.y, headR * 0.9);
-
-    let pupilColor;
-    if (alertState === "seen") {
-      pupilColor = color(255, 40, 40);
-    } else if (alertState === "heard") {
-      pupilColor = color(255, 220, 80);
-    } else {
-      pupilColor = color(40, 80, 40);
-    }
-
-    fill(pupilColor);
-    noStroke();
     const pupilOffset = dir.copy().setMag(headR * 0.25);
     const leftPupil = p5.Vector.add(leftEye, pupilOffset);
     const rightPupil = p5.Vector.add(rightEye, pupilOffset);
-    circle(leftPupil.x, leftPupil.y, headR * 0.4);
-    circle(rightPupil.x, rightPupil.y, headR * 0.4);
+
+    // main drawing
+    switch (mode) {
+      case "default":
+        // draw segments
+        noStroke();
+        for (let i = 0; i < n; i++) {
+          const seg = this.segments[i];
+          const t = n > 1 ? i / (n - 1) : 0; // percentage of segment length
+          // calculate segment properties
+          const r = lerp(headRadius, tailRadius, t); // smooth transition between head and tail radius
+          const alpha = lerp(255, 120, t);
+          // calculate color
+          const c = color(
+            red(baseColor),
+            green(baseColor),
+            blue(baseColor),
+            alpha
+          );
+          fill(c);
+          circle(seg.x, seg.y, r * 2);
+        }
+        // draw eyes
+        fill(255);
+        stroke(0, 80);
+        strokeWeight(1);
+        circle(leftEye.x, leftEye.y, headR * 0.9);
+        circle(rightEye.x, rightEye.y, headR * 0.9);
+        // draw pupils
+        fill(pupilColor);
+        noStroke();
+        circle(leftPupil.x, leftPupil.y, headR * 0.4);
+        circle(rightPupil.x, rightPupil.y, headR * 0.4);
+        break;
+      case "abstract":
+        noFill();
+        stroke(baseColor);
+        strokeWeight(2);
+        // use a line to connect segments
+        beginShape();
+        this.segments.forEach((seg) => vertex(seg.x, seg.y));
+        endShape();
+        // draw head
+        circle(this.segments[0].x, this.segments[0].y, headRadius * 2);
+        break;
+      case "devmode": // no eyes and pupils
+        for (let i = 0; i < n; i++) {
+          const seg = this.segments[i];
+          const t = n > 1 ? i / (n - 1) : 0; // percentage of segment length
+          // calculate segment properties
+          const r = lerp(headRadius, tailRadius, t); // smooth transition between head and tail radius
+          const alpha = lerp(255, 120, t);
+          // calculate color
+          const c = color(
+            red(baseColor),
+            green(baseColor),
+            blue(baseColor),
+            alpha
+          );
+          fill(c);
+          circle(seg.x, seg.y, r * 2);
+        }
+        break;
+    }
 
     pop();
   }
@@ -425,10 +429,19 @@ class SnakeSense {
 
     let hearingStrength = 1 - constrain(d / this.config.hearingRange, 0, 1);
     // trust in sound based on confidence bias
-    hearingStrength = pow(hearingStrength, 1.0 / this.config.hearingConfidenceBias);
+    hearingStrength = pow(
+      hearingStrength,
+      1.0 / this.config.hearingConfidenceBias
+    );
 
     const baseAngle = atan2(dy, dx);
-    const maxAngleNoise = map(1 - hearingStrength, 0, 1, radians(5), radians(60));
+    const maxAngleNoise = map(
+      1 - hearingStrength,
+      0,
+      1,
+      radians(5),
+      radians(60)
+    );
     const angleNoise = random(-maxAngleNoise, maxAngleNoise);
 
     const estAngle = baseAngle + angleNoise;
@@ -436,8 +449,8 @@ class SnakeSense {
 
     this.lastHeardPos = {
       x: head.x + estDist * cos(estAngle),
-      y: head.y + estDist * sin(estAngle)
-    }
+      y: head.y + estDist * sin(estAngle),
+    };
     this.lastHeardStrength = hearingStrength;
   }
 
@@ -448,23 +461,25 @@ class SnakeSense {
 
     if (d > this.config.visionRange) {
       this.seeTimer += deltaTime;
-      return
-    }; // out of vision range
+      return;
+    } // out of vision range
 
-    const dir = this.body.getFacingDir() ? this.body.getFacingDir() : createVector(1, 0);
+    const dir = this.body.getFacingDir()
+      ? this.body.getFacingDir()
+      : createVector(1, 0);
     const angleToPlayer = atan2(dy, dx);
     const facingAngle = atan2(dir.y, dir.x);
     const angleDiff = angleNormalize(angleToPlayer - facingAngle);
 
     if (abs(angleDiff) > this.config.visionFov / 2) {
       this.seeTimer += deltaTime;
-      return // out of FOV
+      return; // out of FOV
     }
 
     // line of sight check
     if (!this.scene.hasLineOfSight(head, player)) {
       this.seeTimer += deltaTime;
-      return // blocked view
+      return; // blocked view
     }
 
     this.lastSeenPos = { x: player.x, y: player.y };
@@ -560,7 +575,10 @@ class SnakeMind {
     }
 
     // If lost interest, transition to LOST
-    if (this._nearTarget(this.currentTarget) || this.sense.seeTimer > this.config.loseInterestTime) {
+    if (
+      this._nearTarget(this.currentTarget) ||
+      this.sense.seeTimer > this.config.loseInterestTime
+    ) {
       this.transitionTo("LOST");
     }
 
@@ -645,7 +663,8 @@ class SnakeMind {
       const col = baseTile.col + floor(random(-rangeTiles, rangeTiles));
       const row = baseTile.row + floor(random(-rangeTiles, rangeTiles));
 
-      if (col < 0 || col >= WORLD_COLS || row < 0 || row >= WORLD_ROWS) continue;
+      if (col < 0 || col >= WORLD_COLS || row < 0 || row >= WORLD_ROWS)
+        continue;
       if (!this.body.nav.isWalkable(col, row)) continue;
 
       const w = tileToWorld(col, row);

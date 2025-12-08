@@ -1,6 +1,4 @@
 {
-  "layout": "assets/data/tileSheet.json",
-  "tileset": "assets/data/tileset/default.json",
   "layers": [
     {
       "layer": 0,

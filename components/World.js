@@ -5,10 +5,14 @@ const TILE_SIZE = 40;
 const WORLD_COLS = WORLD_WIDTH / TILE_SIZE;
 const WORLD_ROWS = WORLD_HEIGHT / TILE_SIZE;
 
+const SPAWN_TILE = { col: 0, row: 11 };
+const END_TILE = { col: WORLD_COLS - 1, row: 11 };
+const CHECK_RADIUS = TILE_SIZE * 0.8;
+
 let debugTiles = false;
 
 class Scene {
-  constructor(sceneData, layoutData, tilesetData, tilesetImage, bgImage) {
+  constructor(layerData, layoutData, tilesetData, tilesetImage, bgImage) {
     this.tileset = tilesetData;
     this.layout = layoutData;
     this.tilesetImage = tilesetImage;
@@ -26,15 +30,16 @@ class Scene {
 
     this.tileset.meta = meta;
 
-    this.layers = sceneData.layers.map(layerObj => {
+    console.log(layerData);
+    this.layers = layerData.layers.map((layerObj) => {
       const sourceName = layerObj.source; // get source name
       const layerData = this.layout[sourceName];
       return new Layer(layerObj, layerData, this.tileset, this.tilesetImage);
     });
 
-    this.collisionLayer = this.layers.find(l => l.type === "collision");
-    this.wallLayer = this.layers.find(l => l.type === "wall");
-    this.bgLayer = this.layers.find(l => l.type === "bg");
+    this.collisionLayer = this.layers.find((l) => l.type === "collision");
+    this.wallLayer = this.layers.find((l) => l.type === "wall");
+    this.bgLayer = this.layers.find((l) => l.type === "bg");
   }
 
   // buffered  rendering
@@ -49,6 +54,7 @@ class Scene {
       masked.mask(this.bgLayer.maskBuffer);
       image(masked, 0, 0, width, height);
     }
+    // decoupling layers to render in a right order
     for (const layer of this.layers) {
       if (layer.type === "wall") layer.draw();
     }
@@ -81,13 +87,12 @@ class Scene {
     const steps = floor(d / step);
 
     for (let i = 0; i < steps; i++) {
-      const x = ax + dx * i / steps;
-      const y = ay + dy * i / steps;
+      const x = ax + (dx * i) / steps;
+      const y = ay + (dy * i) / steps;
       if (this.isSolidAt(x, y)) return false;
     }
     return true;
   }
-
 }
 
 // class for a single layer of the world
@@ -115,7 +120,9 @@ class Layer {
       for (let col = 0; col < WORLD_COLS; col++) {
         const tileId = layoutData[row][col];
         // console.log(tileId);
-        tiles.push(new Tile(col, row, tileId, this.tileset, this.type, this.tilesetImage));
+        tiles.push(
+          new Tile(col, row, tileId, this.tileset, this.type, this.tilesetImage)
+        );
       }
     }
     return tiles;
@@ -139,7 +146,6 @@ class Layer {
         tile.drawMask(this.maskBuffer);
       }
     }
-
   }
 
   // draw the layer buffer to the main canvas
@@ -150,7 +156,8 @@ class Layer {
 
   // get specific tile at (col, row)
   getTile(col, row) {
-    if (row < 0 || row >= WORLD_ROWS || col < 0 || col >= WORLD_COLS) return null;
+    if (row < 0 || row >= WORLD_ROWS || col < 0 || col >= WORLD_COLS)
+      return null;
     return this.tiles[col + row * WORLD_COLS];
   }
 }
@@ -187,7 +194,10 @@ class Tile {
       let sx, sy;
 
       if (Array.isArray(this.def.spriteVariants)) {
-        const [iy, ix] = this.def.spriteVariants[floor(random(this.def.spriteVariants.length))];
+        const [iy, ix] =
+          this.def.spriteVariants[
+            floor(random(this.def.spriteVariants.length))
+          ];
         sx = ix * sSize;
         sy = iy * sSize;
       } else {
@@ -199,12 +209,21 @@ class Tile {
       const dx = this.x * TILE_SIZE;
       const dy = this.y * TILE_SIZE;
 
-      buf.image(this.tilesetImage, dx, dy, TILE_SIZE, TILE_SIZE, sx, sy, sSize, sSize);
-    } else if (this.def.color) {
-      let colr = this.def.color;
-
-      if (this.def.layerColors && this.layerType && this.def.layerColors[this.layerType]) {
-        colr = this.def.layerColors[this.layerType];
+      buf.image(
+        this.tilesetImage,
+        dx,
+        dy,
+        TILE_SIZE,
+        TILE_SIZE,
+        sx,
+        sy,
+        sSize,
+        sSize
+      );
+    } else if (currentSceneType) {
+      let colr = [0, 0, 0, 255];
+      if (currentSceneType === "devmode" || currentSceneType === "abstract") {
+        colr = [200, 200, 200, 255];
       }
 
       if (colr) {
