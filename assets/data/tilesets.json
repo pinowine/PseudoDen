@@ -26,9 +26,7 @@
         [0, 2],
         [0, 3],
         [0, 4],
-        [0, 5],
-        [1, 0],
-        [1, 1]
+        [0, 5]
       ]
     },
 
@@ -129,6 +127,15 @@
       "name": "left-bottom-corner",
       "solid": true,
       "spriteVariants": [[1, 3]]
+    },
+
+    "14": {
+      "name": "double-floor",
+      "solid": true,
+      "spriteVariants": [
+        [1, 0],
+        [1, 1]
+      ]
     }
   }
 }

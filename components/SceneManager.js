@@ -60,7 +60,7 @@ async function loadAssets() {
     });
     length = sceneConfig.scenes.length;
     await Promise.all(imagePromises);
-    loadScene("devmode", 0);
+    loadScene("abstract", 0);
     assetsLoaded = true;
     console.log("All assets loaded.");
   } catch (error) {
