@@ -1,8 +1,6 @@
 # Everyeye Everywhere All at Once
 
-<sub>Iburpofennist, 2025
-- Source Code: [GitHub](https://github.com/pinowine/PseudoDen)
-- Play Online: [Production page](https://pseudoden.ibuprofennist.com)
+<sub>Iburpofennist, 2025, Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
 </sub>
 
 You are a little eye!  
