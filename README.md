@@ -1,14 +1,14 @@
 # Everyeye Everywhere All at Once
 
-<sub>Iburpofennist, 2025</sub>
-
-Source Code: [GitHub](https://github.com/pinowine/PseudoDen)
-Play Online: [Production page](https://pseudoden.ibuprofennist.com)
+<sub>Iburpofennist, 2025
+- Source Code: [GitHub](https://github.com/pinowine/PseudoDen)
+- Play Online: [Production page](https://pseudoden.ibuprofennist.com)
+</sub>
 
 You are a little eye!  
 Try to survive and reach the right side of the cave.
 
-https://github.com/user-attachments/assets/57635772-fbf6-4dbb-b912-70031d982d33
+<video controls src="https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI0OTQsIm5iZiI6MTc2NTMyMjE5NCwicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTExOTAzLTU3NjM1NzcyLWZiZjYtNGRiYi1iOTEyLTcwMDMxZDk4MmQzMy5tb3Y_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzE2MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNWNjODk2NzI1ODNiNzU0NzcwYjZkMzM5MWRjOTVmMmIzOGJhZDU2M2NlMTQwMTMxYzczMmVlMTdlZDQzYjA0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9uC5AEqEzufnZEKoJoLfrfLtJM67b--22GkYjxaAxDE"> </video>
 
 > [!NOTE]
 >
@@ -17,17 +17,12 @@ https://github.com/user-attachments/assets/57635772-fbf6-4dbb-b912-70031d982d33
 >
 > I have mentioned the code references a lot in the previous works, so I will skip the concepts/functions/algorithm in this list (to shorten the document, new stuff will be mentioned below):
 >
-> p5 drawing: startShape(), endShape(), vertex(), offscreen buffer, etc;
->
-> p5 vector and calculations: add(), sub(), mult(), div(), mag(), normalize(), dist(), etc;
->
-> OOP: constructor(), this, Class, new instance, etc;
->
-> p5/js maths: atan2(), abs(), etc;
->
-> js array methods: array.includes(), array.map(), array.forEach(), array.find(), etc;
->
-> JSON data import and storage.
+> <ul><li>p5 drawing: startShape(), endShape(), vertex(), offscreen buffer, etc;</li>
+> <li>p5 vector and calculations: add(), sub(), mult(), div(), mag(), normalize(), dist(), etc;</li>
+> <li>OOP: constructor(), this, Class, new instance, etc;</li>
+> <li>p5/js maths: atan2(), abs(), etc;</li>
+> <li>js array methods: array.includes(), array.map(), array.forEach(), array.find(), etc;</li>
+> <li>JSON data import and storage.</li></ul>
 >
 > </details>
 
@@ -39,7 +34,8 @@ Controlled randomness, which is affected by a suite of personality using [Jungia
 
 So here, I combined the develop experience of the [generative scene project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md) and [collage project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md) with the original idea. I also get an inspiration from [_Everyeye Everywhere All at Once_](https://en.wikipedia.org/wiki/Everything_Everywhere_All_at_Once), a movie I watched several years ago with overwhelmingly massive visual effects.
 
-![Everyeye Everywhere All at Once](assets/readme/film.png)
+![Everyeye Everywhere All at Once](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/film.png)
+
 <sub>_Everyeye Everywhere All at Once_, 2022</sub>
 
 ### Porting from Previous Work
@@ -52,7 +48,7 @@ So basically this project is highly attached to my previous works below, I will 
 - [Collage](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
 - One Godot DEMO of my personal work: Player controller, tilesets, tilemap, 2D platform game physics, etc.
 
-https://github.com/user-attachments/assets/a2f7fb3d-73ba-430a-af98-798e6d9e99f2
+<video controls src="https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI4ODcsIm5iZiI6MTc2NTMyMjU4NywicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTEwNzgyLWEyZjdmYjNkLTczYmEtNDMwYS1hZjk4LTc5OGU2ZDllOTlmMi5NUDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzIzMDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMGI4ZDUxNDhiODQ1NzhkOWQwOTY4NGUyYWM5ODUxMDQ1YzhlMDgyMWY3ZWUwZWMzMDRiYWMzZjMwYWE4M2I4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9H_WSKKxfh1pd0gg1Urs4bMkuObjTOXkGdiPlBcjFL4"></video>
 
 <sub>The records of the Godot-based DEMO. I ported the player control system, player appearance and tilemap system into p5.js. </sub>
 
@@ -62,7 +58,7 @@ https://github.com/user-attachments/assets/a2f7fb3d-73ba-430a-af98-798e6d9e99f2
 
 I thought a lot about the project structure. Initially, I was thinking about using a simple loop to create a fake-infinity. There are dozons of scenes with the extact same layout, but different render features - this allows a smaller project size and still a good visual experience.
 
-![Planning](assets/readme/construction.png)
+![Planning](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets//readme/construction.png)
 
 <sub>Planning before coding</sub>
 
@@ -116,7 +112,7 @@ const WORLD_ROWS = WORLD_HEIGHT / TILE_SIZE;
 
 So I create a 40\*22 grid system, each of them should be fill with one tile. A normal tileset is like this:
 
-![tileset](assets/sprites/sheets/default_01.png)
+![tileset](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets//sprites/sheets/default_01.png)
 
 What you need to do is match the tileset index to the world grid index, and fill the grid with the tile. So the world data mapping is like this flow: scene -> layer -> world grid index -> tileset index -> tile.
 
@@ -181,29 +177,31 @@ Then based on the initial tileset, I created several variantions of it but with 
 - Abstract: low-poly, line-art, vector art, abstractionism, etc;
 - Devmode: reveal how I name and arrange the tileset.
 
-![devmode](assets/sprites/sheets/devmode_01.png)
+![devmode](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/sprites/sheets/devmode_01.png)
+
 <sub>Devmode tileset</sub>
 
 > [!NOTE]
 > I used generative AI here to create several art styles here, including:
 >
-> - [Sketch style](assets/sprites/sheets/abstract_04.png)
-> - [Pen paint](assets/sprites/sheets/abstract_05.png)
-> - [Comic](assets/sprites/sheets/abstract_06.png)
-> - [Abstract expressionism](assets/sprites/sheets/abstract_07.png)
-> - [Water color](assets/sprites/sheets/default_07.png)
-> - [Oil paint](assets/sprites/sheets/default_11.png)
-> - [Cubism](assets/sprites/sheets/default_13.png)
-> - [Deconstructivism](assets/sprites/sheets/default_14.png)
+> - [Sketch style](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_04.png)
+> - [Pen paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_05.png)
+> - [Comic](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_06.png)
+> - [Abstract expressionism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_07.png)
+> - [Water color](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_07.png)
+> - [Oil paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_11.png)
+> - [Cubism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_13.png)
+> - [Deconstructivism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_14.png)
 >
 >   Other images are created by figma or photoshop.
 
-![layout](assets/readme/layout-building-tool.png)
+![layout](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/layout-building-tool.png)
+
 <sub>Layout intially is like this</sub>
 
 ### Player
 
-Player is a simple eye, so the appearance is easy to code - just several ellipses. The key here is the physics, which is implemented in [`RigidBody.js`](components/RigidBody.js).
+Player is a simple eye, so the appearance is easy to code - just several ellipses. The key here is the physics, which is implemented in [`RigidBody.js`](https://github.com/pinowine/PseudoDen/tree/main/components/RigidBody.js).
 
 #### Controller System
 
@@ -283,14 +281,16 @@ The `this.stateTime` is directly affected by its personality, like some snakes a
 
 The `sense` class is used to detect the player's position and pass results to the `mind` class. I deisgned both hearing and vision systems, the former will not be blocked but vigarious, while the later is exact but will be blocked by the wall, and also has a FOV standing for a limited range.
 
-![debugging scene](assets/readme/dev-shot.png)
+![debugging scene](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/dev-shot.png)
+
 <sub>Debugging scene</sub>
 
 ## Critique
 
 In the critique at the final week, I showed an imcomplete version of the game, which only has one scene.
 
-![critique](assets/readme/initial-scene.png)
+![critique](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/initial-scene.png)
+
 <sub>Initial scene</sub>
 
 I noted these comments:
@@ -303,7 +303,8 @@ I am not quite sure about the originality of the game. It based on a lot of exsi
 
 Yeah, some of the concepts came after the game was almost finished. But I think it's a natural process.
 
-![intro](assets/readme/intro.png)
+![intro](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/intro.png)
+
 <sub>Intro scene</sub>
 
 ## Issues and Solutions
