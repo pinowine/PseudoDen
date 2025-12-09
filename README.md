@@ -8,6 +8,8 @@ Play Online: [Production page](https://pseudoden.ibuprofennist.com)
 You are a little eye!  
 Try to survive and reach the right side of the cave.
 
+https://github.com/user-attachments/assets/57635772-fbf6-4dbb-b912-70031d982d33
+
 > [!NOTE]
 >
 > <details>
@@ -49,6 +51,8 @@ So basically this project is highly attached to my previous works below, I will 
 - [Generative Scene](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md): Offscreen buffer in reflection and properties passing between instances.
 - [Collage](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
 - One Godot DEMO of my personal work: Player controller, tilesets, tilemap, 2D platform game physics, etc.
+
+https://github.com/user-attachments/assets/a2f7fb3d-73ba-430a-af98-798e6d9e99f2
 
 <sub>The records of the Godot-based DEMO. I ported the player control system, player appearance and tilemap system into p5.js. </sub>
 
