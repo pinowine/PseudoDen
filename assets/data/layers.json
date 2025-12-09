@@ -2,21 +2,16 @@
   "layers": [
     {
       "layer": 0,
-      "type": "visual",
-      "source": "collision"
-    },
-    {
-      "layer": 1,
       "type": "collision",
       "source": "collision"
     },
     {
-      "layer": 2,
+      "layer": 1,
       "type": "wall",
       "source": "wall"
     },
     {
-      "layer": 3,
+      "layer": 2,
       "type": "bg",
       "source": "bg"
     }

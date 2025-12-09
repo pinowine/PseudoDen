@@ -73,8 +73,62 @@
       "type": "default"
     },
     {
+      "id": "default_12",
+      "tilesprite": "assets/sprites/sheets/default_12.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "default"
+    },
+    {
+      "id": "default_13",
+      "tilesprite": "assets/sprites/sheets/default_13.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "default"
+    },
+    {
+      "id": "default_14",
+      "tilesprite": "assets/sprites/sheets/default_14.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "default"
+    },
+    {
       "id": "abstract_01",
       "tilesprite": "assets/sprites/sheets/abstract_01.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_02",
+      "tilesprite": "assets/sprites/sheets/abstract_02.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_03",
+      "tilesprite": "assets/sprites/sheets/abstract_03.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_04",
+      "tilesprite": "assets/sprites/sheets/abstract_04.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_05",
+      "tilesprite": "assets/sprites/sheets/abstract_05.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_06",
+      "tilesprite": "assets/sprites/sheets/abstract_06.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "abstract"
+    },
+    {
+      "id": "abstract_07",
+      "tilesprite": "assets/sprites/sheets/abstract_07.png",
       "bg": "assets/sprites/backgrounds/default_01.png",
       "type": "abstract"
     },
@@ -93,6 +147,12 @@
     {
       "id": "devmode_03",
       "tilesprite": "assets/sprites/sheets/devmode_03.png",
+      "bg": "assets/sprites/backgrounds/default_01.png",
+      "type": "devmode"
+    },
+    {
+      "id": "devmode_04",
+      "tilesprite": "assets/sprites/sheets/devmode_04.png",
       "bg": "assets/sprites/backgrounds/default_01.png",
       "type": "devmode"
     }

@@ -52,21 +52,21 @@ class Player {
         ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.45);
         break;
       case "abstract":
-        stroke(255);
+        stroke(0);
         noFill();
         strokeWeight(2);
         ellipse(0, 0, this.body.radius * 2);
         break;
       case "devmode":
         // default drawing
-        fill(255);
+        fill(0);
         noStroke();
         ellipse(0, 0, this.body.radius * 2);
-        stroke(0);
+        stroke(255);
         ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.9);
-        fill(0);
+        fill(255);
         ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.45);
-        // debug
+        // debug velocity line
         stroke(0, 255, 255);
         const debugVel = this.body.vel.copy().mult(5);
         line(0, 0, debugVel.x, debugVel.y);

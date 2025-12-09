@@ -30,7 +30,7 @@ class Scene {
 
     this.tileset.meta = meta;
 
-    console.log(layerData);
+    // console.log(layerData);
     this.layers = layerData.layers.map((layerObj) => {
       const sourceName = layerObj.source; // get source name
       const layerData = this.layout[sourceName];
@@ -113,7 +113,7 @@ class Layer {
     this.renderToBuffer();
   }
 
-  // obj type: { valid: true/false, ... }
+  // layout data: 0(invalid)/1(valid)
   createTiles(layoutData) {
     const tiles = [];
     for (let row = 0; row < WORLD_ROWS; row++) {
@@ -134,6 +134,7 @@ class Layer {
     buf.clear();
     buf.noStroke();
 
+    // bg layer is a single image with mask
     if (this.type === "bg" && this.maskBuffer) {
       this.maskBuffer.clear();
       this.maskBuffer.background(0);
@@ -145,6 +146,11 @@ class Layer {
       if (this.type === "bg" && this.maskBuffer) {
         tile.drawMask(this.maskBuffer);
       }
+    }
+
+    // add a blur effect to the wall layer
+    if (this.type === "wall") {
+      this.buffer.filter(BLUR, 5);
     }
   }
 
@@ -187,7 +193,16 @@ class Tile {
     const useSprite =
       this.tilesetImage &&
       this.def.spriteVariants != null &&
-      this.layerType === "collision";
+      this.layerType === "collision" &&
+      this.id !== 0;
+
+    // for default scene, only draw wall tiles
+    const useRectFill =
+      (this.layerType === "wall" &&
+        currentSceneType === "default" &&
+        this.id !== 0) ||
+      // for abstract scene, draw all tiles
+      (this.layerType === "wall" && currentSceneType !== "default");
 
     if (useSprite) {
       const sSize = this.srcSize;
@@ -220,10 +235,11 @@ class Tile {
         sSize,
         sSize
       );
-    } else if (currentSceneType) {
-      let colr = [0, 0, 0, 255];
+    } else if (useRectFill) {
+      let colr = [0, 0, 0, 150];
       if (currentSceneType === "devmode" || currentSceneType === "abstract") {
-        colr = [200, 200, 200, 255];
+        colr = [210, 210, 210, 255];
+        if (this.id === 0) colr = [225, 225, 225, 255];
       }
 
       if (colr) {
@@ -234,15 +250,6 @@ class Tile {
         buf.rect(this.x * TILE_SIZE, this.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
         buf.pop();
       }
-    }
-
-    if (window.debugTiles && this.def.debugColor) {
-      const [dr, dg, db, da = 255] = this.def.debugColor;
-      buf.push();
-      buf.noStroke();
-      buf.fill(dr, dg, db, da);
-      buf.rect(this.x * TILE_SIZE, this.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-      buf.pop();
     }
   }
 

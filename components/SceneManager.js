@@ -1,8 +1,3 @@
-// scene numbers of each type
-const DEFAULT_NUM = 11;
-const ABSTRACT_NUM = 1;
-const DEVMODE_NUM = 3;
-
 let sceneConfig;
 let layoutConfig;
 let tilesetConfig;
@@ -60,31 +55,28 @@ async function loadAssets() {
     });
     length = sceneConfig.scenes.length;
     await Promise.all(imagePromises);
-    loadScene("abstract", 0);
     assetsLoaded = true;
     console.log("All assets loaded.");
+    const loadingStatus = document.getElementById("loading-status");
+    if (loadingStatus) {
+      loadingStatus.textContent = "Assets ready. Click “Start Game”.";
+    }
   } catch (error) {
     console.error("Error loading assets:", error);
+    const loadingStatus = document.getElementById("loading-status");
+    if (loadingStatus) {
+      loadingStatus.textContent = "Failed to load assets (see console).";
+    }
   }
 }
 
-function loadScene(type, index) {
+function loadScene(index) {
   // console.log(sceneConfig);
   const scenes = sceneConfig.scenes;
-  currentSceneType = type;
 
   let def;
-  switch (type) {
-    case "default":
-      def = scenes[index];
-      break;
-    case "abstract":
-      def = scenes[DEFAULT_NUM + index + 1];
-      break;
-    case "devmode":
-      def = scenes[DEFAULT_NUM + ABSTRACT_NUM + index + 1];
-      break;
-  }
+  def = scenes[index];
+  currentSceneType = def.type;
   const tilesetImage = tilesetImages[def.id];
   const bgImage = bgImages[def.id];
   // console.log(bgImage);
@@ -108,7 +100,7 @@ function resetEntities() {
   player = new Player(spawnPos.x, spawnPos.y);
 
   // reset snakes
-  const snakeNum = floor(random(5, 9));
+  const snakeNum = floor(random(4, 8));
   for (let i = 0; i < snakeNum; i++) {
     snakes.push(spawnSnake(scene));
   }
@@ -177,16 +169,6 @@ function checkPLayerReachedEnd() {
   if (d < CHECK_RADIUS) {
     console.log("Player reached the end!");
     // get a random scene type
-    switch (floor(random(0, 3))) {
-      case 0:
-        loadScene("default", floor(random(0, DEFAULT_NUM)));
-        break;
-      case 1:
-        loadScene("abstract", floor(random(0, ABSTRACT_NUM)));
-        break;
-      case 2:
-        loadScene("devmode", floor(random(0, DEVMODE_NUM)));
-        break;
-    }
+    loadScene(floor(random(0, length)));
   }
 }

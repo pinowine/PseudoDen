@@ -76,7 +76,7 @@ class Snake {
 
     push();
     stroke(0, 255, 255, 150);
-    strokeWeight(2);
+    strokeWeight(10);
     noFill();
     beginShape();
     // draw path
@@ -97,12 +97,12 @@ class Snake {
 
     // hearing range
     stroke(255, 255, 0, 80);
-    strokeWeight(2);
+    strokeWeight(4);
     ellipse(head.x, head.y, config.hearingRange * 2);
 
     // vision range
     stroke(0, 255, 0, 80);
-    strokeWeight(2);
+    strokeWeight(4);
     ellipse(head.x, head.y, config.visionRange * 2);
 
     // vision fov
@@ -126,14 +126,14 @@ class Snake {
     // last seen
     if (this.sense.lastSeenPos) {
       stroke(255, 0, 0);
-      strokeWeight(2);
+      strokeWeight(4);
       point(this.sense.lastSeenPos.x, this.sense.lastSeenPos.y);
     }
 
     // last heard
     if (this.sense.lastHeardPos) {
       stroke(255, 255, 0);
-      strokeWeight(2);
+      strokeWeight(5);
       point(this.sense.lastHeardPos.x, this.sense.lastHeardPos.y);
     }
 
@@ -290,13 +290,13 @@ class SnakeBody {
     let baseColor;
     switch (alertState) {
       case "seen":
-        baseColor = color(220, 60, 60);
+        baseColor = color(196, 51, 2);
         break;
       case "heard":
-        baseColor = color(230, 200, 60);
+        baseColor = color(237, 170, 37);
         break;
       default:
-        baseColor = color(60, 180, 100);
+        baseColor = color(10, 155, 155);
         break;
     }
     let pupilColor;
@@ -323,14 +323,15 @@ class SnakeBody {
       dir.set(1, 0);
     }
     dir.setMag(headR * 0.6);
-    const side = createVector(-dir.y, dir.x);
-    side.setMag(headR * 0.45);
-    const eyeBase = p5.Vector.add(head, dir);
-    const leftEye = p5.Vector.add(eyeBase, side);
-    const rightEye = p5.Vector.sub(eyeBase, side);
+    // const side = createVector(-dir.y, dir.x);
+    // side.setMag(headR * 0.45);
+    const eyeBase = p5.Vector.add(head, dir * 0.8);
+    // const leftEye = p5.Vector.add(eyeBase, side);
+    // const rightEye = p5.Vector.sub(eyeBase, side);
     const pupilOffset = dir.copy().setMag(headR * 0.25);
-    const leftPupil = p5.Vector.add(leftEye, pupilOffset);
-    const rightPupil = p5.Vector.add(rightEye, pupilOffset);
+    // const leftPupil = p5.Vector.add(leftEye, pupilOffset);
+    // const rightPupil = p5.Vector.add(rightEye, pupilOffset);
+    const pupil = p5.Vector.add(eyeBase, pupilOffset);
 
     // main drawing
     switch (mode) {
@@ -357,13 +358,11 @@ class SnakeBody {
         fill(255);
         stroke(0, 80);
         strokeWeight(1);
-        circle(leftEye.x, leftEye.y, headR * 0.9);
-        circle(rightEye.x, rightEye.y, headR * 0.9);
+        circle(eyeBase.x, eyeBase.y, headR * 1.5);
         // draw pupils
         fill(pupilColor);
         noStroke();
-        circle(leftPupil.x, leftPupil.y, headR * 0.4);
-        circle(rightPupil.x, rightPupil.y, headR * 0.4);
+        circle(pupil.x, pupil.y, headR * 0.8);
         break;
       case "abstract":
         noFill();
@@ -535,7 +534,7 @@ class SnakeMind {
     }
   }
 
-  updateIdle(player) {
+  updateIdle() {
     this.body.setSpeedMultiplier(0.2);
 
     if (!this.currentTarget || this._nearTarget(this.currentTarget)) {
@@ -550,7 +549,7 @@ class SnakeMind {
     this.checkForPlayer();
   }
 
-  updatePatrol(player) {
+  updatePatrol() {
     this.body.setSpeedMultiplier(0.5);
 
     // Change direction randomly
