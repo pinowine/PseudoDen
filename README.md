@@ -2,6 +2,9 @@
 
 <sub>Iburpofennist, 2025</sub>
 
+Source Code: [GitHub](https://github.com/pinowine/PseudoDen)
+Play Online: [Production page](https://pseudoden.ibuprofennist.com)
+
 You are a little eye!  
 Try to survive and reach the right side of the cave.
 
@@ -9,13 +12,21 @@ Try to survive and reach the right side of the cave.
 >
 > <details>
 > <summary>About Citations</summary>
+>
 > I have mentioned the code references a lot in the previous works, so I will skip the concepts/functions/algorithm in this list (to shorten the document, new stuff will be mentioned below):
-> - p5 drawing: startShape(), endShape(), vertex(), offscreen buffer, etc;
-> - p5 vector and calculations: add(), sub(), mult(), div(), mag(), normalize(), dist(), etc;
-> - OOP: constructor(), this, Class, new instance, etc;
-> - p5/js maths: atan2(), abs(), etc;
-> - js array methods: array.includes(), array.map(), array.forEach(), array.find(), etc;
-> - JSON data import and storage.
+>
+> p5 drawing: startShape(), endShape(), vertex(), offscreen buffer, etc;
+>
+> p5 vector and calculations: add(), sub(), mult(), div(), mag(), normalize(), dist(), etc;
+>
+> OOP: constructor(), this, Class, new instance, etc;
+>
+> p5/js maths: atan2(), abs(), etc;
+>
+> js array methods: array.includes(), array.map(), array.forEach(), array.find(), etc;
+>
+> JSON data import and storage.
+>
 > </details>
 
 ## Concept & Inspiration
@@ -363,6 +374,14 @@ draw() {
   }
 }
 ```
+
+## Technical Stack
+
+- p5.js
+- HTML/CSS/JS
+- Github + Netlify + Cloudflare: I use github as source cide repo, netlify as production page, and cloudflare as CDN. I use my subdomain pseudoden.ibuprofennist.com to host the game.
+- photoshop, figma
+- Gemini Nano: create several artstyles mentioned above
 
 ## References
 
