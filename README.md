@@ -461,7 +461,7 @@ graph TD
     S[Current Scene]
     P[Player Instance]
     Sn[Snake Instances Array]
-    L[Layers (Collision, Wall, BG)]
+    L[Layers: Collision, Wall, BG]
     T[Tiles]
 
     SM -->|manages| S
