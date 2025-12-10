@@ -419,27 +419,28 @@ View of the main classes and their components.
 ```mermaid
 classDiagram
     class Scene {
+        +Object tileset
+        +Object layout
         +Layer[] layers
         +render()
-        +draw()
-        +isSolidAt(x, y)
     }
     class Player {
         +RigidBody body
         +Vector eyePos
         +update(scene)
-        +draw(mode)
+        +jump()
     }
     class Snake {
         +SnakeBody body
         +SnakeMind mind
         +SnakeSense sense
         +update(player)
-        +draw(mode)
     }
     class RigidBody {
         +Vector pos
         +Vector vel
+        +bool onGround
+        +float gravity
         +applyGravity()
         +resolveCollision()
     }
