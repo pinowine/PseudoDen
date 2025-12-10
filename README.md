@@ -28,13 +28,13 @@
 
 This project is an extension of my previous work [Worm & Rat](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment5.md). In that project, I dived into random walk, or more specifically, **path finding algorithm**. The critique of it inspired me to create some sort of infinite scene where the character and scene will be different every time you run the script.
 
-Controlled randomness, which is affected by a suite of personality using [Jungian cognitive functions](https://www.cognitiveprocesses.com/), is my previous idea, and I would like to keep it. Some classmates said that there is not enough interations between the worms and the environment, and I agree with it.
+Controlled randomness, which is affected by a suite of personality using [Jungian cognitive functions](https://www.cognitiveprocesses.com/), is my previous idea, and I would like to keep it. Some classmates said that there are not enough interactions between the worms and the environment, and I agree with it.
 
-So here, I combined the develop experience of the [generative scene project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md) and [collage project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md) with the original idea. I also get an inspiration from [_Everyeye Everywhere All at Once_](https://en.wikipedia.org/wiki/Everything_Everywhere_All_at_Once), a movie I watched several years ago with overwhelmingly massive visual effects.
+So here, I combined the develop experience of the [generative scene project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md) and [collage project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md) with the original idea. I also get an inspiration from [_Everything Everywhere All at Once_](https://en.wikipedia.org/wiki/Everything_Everywhere_All_at_Once), a movie I watched several years ago with overwhelmingly massive visual effects.
 
 ![Everyeye Everywhere All at Once](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/film.png)
 
-<sub>_Everyeye Everywhere All at Once_, 2022</sub>
+<sub>_Everything Everywhere All at Once_, 2022</sub>
 
 ### Porting from Previous Work
 
@@ -54,7 +54,7 @@ So basically this project is highly attached to my previous works below, I will 
 
 ### Planning before Coding
 
-I thought a lot about the project structure. Initially, I was thinking about using a simple loop to create a fake-infinity. There are dozons of scenes with the extact same layout, but different render features - this allows a smaller project size and still a good visual experience.
+I thought a lot about the project structure. Initially, I was thinking about using a simple loop to create a fake-infinity. There are dozens of scenes with the exact same layout, but different render features - this allows a smaller project size and still a good visual experience.
 
 ![Planning](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets//readme/construction.png)
 
@@ -80,7 +80,7 @@ So after writing this clean structure, I started coding.
 
 ### Skeleton Building
 
-According to my previous experience on React coding and the analyse above, I create this project strcuture:
+According to my previous experience on React coding and the analysis above, I create this project structure:
 
 - assets/
   - data/
@@ -96,7 +96,7 @@ According to my previous experience on React coding and the analyse above, I cre
 
 > It's not the project tree now, because some of them are too big that I break them into smaller js files.
 
-### World Bulding
+### World Building
 
 I tried to build the tileset world first. Here is the basic settings:
 
@@ -108,7 +108,7 @@ const WORLD_COLS = WORLD_WIDTH / TILE_SIZE;
 const WORLD_ROWS = WORLD_HEIGHT / TILE_SIZE;
 ```
 
-So I create a 40\*22 grid system, each of them should be fill with one tile. A normal tileset is like this:
+So I create a 40\*22 grid system, each of them should be filled with one tile. A normal tileset is like this:
 
 ![tileset](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets//sprites/sheets/default_01.png)
 
@@ -116,7 +116,7 @@ What you need to do is match the tileset index to the world grid index, and fill
 
 That's how I create these four JSON files to storage data:
 
-- `scene.json`: claming which tileset to use (visual controller)
+- `scene.json`: claiming which tileset to use (visual controller)
 
 ```js
 "id": "default_01",
@@ -137,7 +137,7 @@ That's how I create these four JSON files to storage data:
 
 - `layers.json`: assign layout data to each layer
   - `collision`: physics checks and tilesets
-  - `wall`: single color tectangle for hunter to climb on
+  - `wall`: single color rectangle for hunter to climb on
   - `bg`: background image
 
 ```js
@@ -167,11 +167,11 @@ So in `World.js`, I just need to pass the data from `class Scene` to `class Laye
 
 #### Image Processing
 
-The original tileset is from an [open source asset](https://szadiart.itch.io/pixel-fantasy-caves). I used Photopshop to edit and arrange them into the 6\*6 gird above.
+The original tileset is from an [open source asset](https://szadiart.itch.io/pixel-fantasy-caves). I used Photoshop to edit and arrange them into the 6\*6 grid above.
 
-Then based on the initial tileset, I created several variantions of it but with the same layout. I put them into three main groups:
+Then based on the initial tileset, I created several variations of it but with the same layout. I put them into three main groups:
 
-- Default: high-resolution or some kind of realisctic style;
+- Default: high-resolution or some kind of realistic style;
 - Abstract: low-poly, line-art, vector art, abstractionism, etc;
 - Devmode: reveal how I name and arrange the tileset.
 
@@ -195,7 +195,7 @@ Then based on the initial tileset, I created several variantions of it but with 
 
 ![layout](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/layout-building-tool.png)
 
-<sub>Layout intially is like this</sub>
+<sub>Layout initially is like this</sub>
 
 ### Player
 
@@ -239,7 +239,7 @@ ellipse(this.eyePos.x, this.eyePos.y, this.body.radius * 0.9);
 
 It's actually one kind of hunter, a snake. Initially I tried to make it universal and portable to every kind of hunter, but it's too complex and I don't have the time to finish it.
 
-The snake part is basically same as the [Random Walking project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment5.md), so I will only exlplain the polished part.
+The snake part is basically same as the [Random Walking project](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment5.md), so I will only explain the polished part.
 
 #### Pathfinding
 
@@ -249,7 +249,7 @@ So basically, the snake will find the shortest path to the goal in the wall laye
 
 #### Personality
 
-Desipite the 8 personalities are pasted from the previous work, I still use two classes: mind and sense, to connect the snake's personality to its behavior.
+Despite the 8 personalities being pasted from the previous work, I still use two classes: mind and sense, to connect the snake's personality to its behavior.
 
 The `mind` class contains a simple state machine, which controls the snake's intentions. For example, this state "idle" will make the snake stay still for a while:
 
@@ -277,7 +277,7 @@ updateIdle() {
 
 The `this.stateTime` is directly affected by its personality, like some snakes are more active than others.
 
-The `sense` class is used to detect the player's position and pass results to the `mind` class. I deisgned both hearing and vision systems, the former will not be blocked but vigarious, while the later is exact but will be blocked by the wall, and also has a FOV standing for a limited range.
+The `sense` class is used to detect the player's position and pass results to the `mind` class. I designed both hearing and vision systems, the former will not be blocked but imprecise, while the latter is exact but will be blocked by the wall, and also has a FOV standing for a limited range.
 
 ![debugging scene](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/dev-shot.png)
 
@@ -285,7 +285,7 @@ The `sense` class is used to detect the player's position and pass results to th
 
 ## Critique
 
-In the critique at the final week, I showed an imcomplete version of the game, which only has one scene.
+In the critique at the final week, I showed an incomplete version of the game, which only has one scene.
 
 ![critique](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/initial-scene.png)
 
@@ -297,7 +297,7 @@ I noted these comments:
 - animal well vibe
 - not so original
 
-I am not quite sure about the originality of the game. It based on a lot of exsisting works for sure. I actually focused on optimizing narrative. I changed the tile form "pseudo grotto", which is kind of like a region name in a metroidvania game, to "Everyeye Everywhere All at Once". I also added butch of scenes with different artsyles to give more game vibes. I also added an intro scene with simple HTML/CSS/JS.
+I am not quite sure about the originality of the game. It based on a lot of exsisting works for sure. I actually focused on optimizing narrative. I changed the tile form "pseudo grotto", which is kind of like a region name in a metroidvania game, to "Everyeye Everywhere All at Once". I also added a bunch of scenes with different artsyles to give more game vibes. I also added an intro scene with simple HTML/CSS/JS.
 
 Yeah, some of the concepts came after the game was almost finished. But I think it's a natural process.
 
@@ -380,59 +380,137 @@ draw() {
 
 ## Coding Summary
 
+### Project Structure
+
 ```mermaid
-flowchart TD
-A[Page load] --> B[loadAssets()]
-B -->|fetch JSONs<br/>load images| C{assetsLoaded?}
-C -->|No| C
-C -->|Yes| D[Show Intro Overlay]
-D --> E[User clicks<br/>Start Game]
-E --> F[startGame()]
-F --> G[loadScene(sceneType, index)]
-G --> H[Pick scene def<br/>(default / abstract / devmode)]
-H --> I[Create Scene(layerConfig,<br/>layoutConfig, tilesetConfig,<br/>tilesetImage, bgImage)]
-I --> J[Scene builds Layers<br/>(collision, wall, bg)]
-J --> K[Scene pre-renders each layer<br/>into offscreen buffers]
-K --> L[resetEntities()]
-L --> M[Create Player at SPAWN_TILE]
-L --> N[Spawn 5–8 Snakes on<br/>random non-collision wall tiles]
-M --> O[gameState = 'playing']
-N --> O
+classDiagram
+    class Scene {
+        +Object tileset
+        +Object layout
+        +Image tilesetImage
+        +Image bgImage
+        +Layer[] layers
+        +Layer collisionLayer
+        +Layer wallLayer
+        +Layer bgLayer
+        +render()
+        +draw()
+        +isSolidAt(x, y)
+        +hasLineOfSight(a, b)
+    }
 
-subgraph Main Loop (draw)
-  P[draw()] --> Q{assetsLoaded<br/>AND gameState=='playing'?}
-  Q -->|No| P
-  Q -->|Yes| R[Update Player]
-  R --> S[Update each Snake]
-  S --> T[scene.draw()<br/>• draw masked bg<br/>• draw wall layer<br/>• draw collision layer]
+    class Layer {
+        +int layer
+        +String type
+        +Graphics buffer
+        +Graphics maskBuffer
+        +Tile[] tiles
+        +renderToBuffer()
+        +draw()
+        +getTile(col, row)
+    }
 
-  T --> U[Draw Player]
-  U --> V[Draw Snakes<br/>(default / abstract / devmode visuals)]
+    class Tile {
+        +int x
+        +int y
+        +int id
+        +draw(buffer)
+    }
 
-  V --> W[checkSnakeEatPlayer()]
-  W -->|Head touches player| L[resetEntities()]
-  W -->|No| X[checkPlayerReachedEnd()]
+    class Player {
+        +RigidBody body
+        +Vector eyePos
+        +update(scene)
+        +draw(mode)
+        +jump()
+    }
 
-  X -->|Reached END_TILE| Y[Pick next scene type<br/>default / abstract / devmode]
-  Y --> Z[loadScene(newType, newIndex)]
-  X -->|Not yet| P
-end
+    class RigidBody {
+        +Vector pos
+        +Vector vel
+        +update(scene, input)
+        +applyGravity()
+        +resolveCollision()
+    }
 
-subgraph Snake Update
-  S1[Snake.update(player)] --> S2[SnakeSense.update()<br/>• hearing<br/>• vision/LOS]
-  S2 --> S3[SnakeMind.update()<br/>FSM: IDLE/PATROL/SEARCH/CHASE/LOST]
-  S3 --> S4[SnakeMind.getTarget()]
-  S4 --> S5[A* pathfinding<br/>from head tile<br/>to target tile]
-  S5 --> S6[SnakeBody.update()<br/>• move head along path<br/>• drag segments to follow]
-  S6 --> S7[Snake.draw(mode)<br/>• default body + eyes<br/>• abstract line body<br/>• devmode + sensors/path]
-end
+    class Snake {
+        +Scene scene
+        +SnakeNav nav
+        +AStarPathfinder pathfinder
+        +SnakeBody body
+        +SnakeSense sense
+        +SnakeMind mind
+        +update(player)
+        +draw(mode)
+    }
+
+    class SnakeBody {
+        +Vector head
+        +Vector[] segments
+        +update(dt)
+        +draw(alertState, mode)
+    }
+
+    class SnakeSense {
+        +update(player)
+    }
+
+    class SnakeMind {
+        +String state
+        +update(player)
+        +getTarget()
+    }
+
+    Scene "1" *-- "many" Layer
+    Layer "1" *-- "many" Tile
+    Player "1" *-- "1" RigidBody
+    Snake "1" *-- "1" SnakeBody
+    Snake "1" *-- "1" SnakeSense
+    Snake "1" *-- "1" SnakeMind
+    SnakeBody ..> SnakeNav : uses
+```
+
+### Game Logic
+
+```mermaid
+sequenceDiagram
+    participant Main as sketch.js (Draw Loop)
+    participant SceneManager
+    participant Player
+    participant Snake
+    participant Scene
+
+    Main->>Player: update(scene)
+    Player->>Player: Handle Input & Physics
+
+    loop Every Snake
+        Main->>Snake: update(player)
+        Snake->>Snake: Sense & Mind Update
+        Snake->>Snake: Pathfinding & Movement
+    end
+
+    Main->>Scene: draw()
+    Scene-->>Main: Render Layers
+
+    Main->>Player: draw()
+    Main->>Snake: draw()
+
+    Main->>SceneManager: checkSnakeEatPlayer()
+    alt Collision Detected
+        SceneManager->>SceneManager: resetEntities()
+    end
+
+    Main->>SceneManager: checkPlayerReachedEnd()
+    alt End Reached
+        SceneManager->>SceneManager: loadScene(random)
+    end
 ```
 
 ## Technical Stack
 
 - p5.js
 - HTML/CSS/JS
-- Github + Netlify + Cloudflare: I use github as source cide repo, netlify as production page, and cloudflare as CDN. I use my subdomain pseudoden.ibuprofennist.com to host the game.
+- Github + Netlify + Cloudflare: I use GitHub as source code repo, netlify as production page, and cloudflare as CDN. I use my subdomain pseudoden.ibuprofennist.com to host the game.
 - photoshop, figma
 - Gemini Nano: create several artstyles mentioned above
 
