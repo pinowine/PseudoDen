@@ -40,11 +40,11 @@ So here, I combined the develop experience of the [generative scene project](htt
 
 So basically this project is highly attached to my previous works below, I will simply explain the main part I borrowed from them:
 
-- [Simple Push-the-Box Game](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment2.md): State machine system in reflection and grid-based world.
-- [Worm & Rat](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment5.md): The procedural animation and the personality system.
-- [Generative Scene](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md): Offscreen buffer in reflection and properties passing between instances.
-- [Collage](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
-- One Godot DEMO of my personal work: Player controller, tilesets, tilemap, 2D platform game physics, etc.
+- **Simple Push-the-Box Game** ([link](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment2.md)): State machine system in reflection and grid-based world.
+- **Worm & Rat** ([link](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment5.md)): The procedural animation and the personality system.
+- **Generative Scene** ([link](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment6.md)): Offscreen buffer in reflection and properties passing between instances.
+- **Collage** ([link](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md)): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
+- **Godot DEMO**: Player controller, tilesets, tilemap, 2D platform game physics, etc.
 
 <video controls src="https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI4ODcsIm5iZiI6MTc2NTMyMjU4NywicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTEwNzgyLWEyZjdmYjNkLTczYmEtNDMwYS1hZjk4LTc5OGU2ZDllOTlmMi5NUDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzIzMDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMGI4ZDUxNDhiODQ1NzhkOWQwOTY4NGUyYWM5ODUxMDQ1YzhlMDgyMWY3ZWUwZWMzMDRiYWMzZjMwYWE4M2I4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9H_WSKKxfh1pd0gg1Urs4bMkuObjTOXkGdiPlBcjFL4"></video>
 
@@ -62,19 +62,19 @@ I thought a lot about the project structure. Initially, I was thinking about usi
 
 So I deconstructed the project into parts showing above, which at the same time told me how to structure the classes:
 
-- Scene: One screen of the game
-  - Layer: collision, wall, bg
-    - Tile: each tile is a sprite
-- Player
-  - Controller
-  - Physics: RigidBody and Gravity
-  - Graphics: An eye
-- Hunter
-  - Personality
-  - Movement:
-    - Physics: RigidBody and Gravity
-    - AI: Pathfinding
-  - Graphics: A snake
+- **Scene**: One screen of the game
+  - **Layer**: collision, wall, bg
+    - **Tile**: each tile is a sprite
+- **Player**
+  - **Controller**
+  - **Physics**: RigidBody and Gravity
+  - **Graphics**: An eye
+- **Hunter**
+  - **Personality**
+  - **Movement**:
+    - **Physics**: RigidBody and Gravity
+    - **AI**: Pathfinding
+  - **Graphics**: A snake
 
 So after writing this clean structure, I started coding.
 
@@ -82,17 +82,19 @@ So after writing this clean structure, I started coding.
 
 According to my previous experience on React coding and the analysis above, I create this project structure:
 
-- assets/
-  - data/
-  - images/
-- components/
-  - Hunter.js
-  - Player.js
-  - World.js
-- libraries/
-- index.html
-- sketch.js
-- style.css
+```text
+assets/
+├── data/
+└── images/
+components/
+├── Hunter.js
+├── Player.js
+└── World.js
+libraries/
+index.html
+sketch.js
+style.css
+```
 
 > It's not the project tree now, because some of them are too big that I break them into smaller js files.
 
@@ -171,9 +173,9 @@ The original tileset is from an [open source asset](https://szadiart.itch.io/pix
 
 Then based on the initial tileset, I created several variations of it but with the same layout. I put them into three main groups:
 
-- Default: high-resolution or some kind of realistic style;
-- Abstract: low-poly, line-art, vector art, abstractionism, etc;
-- Devmode: reveal how I name and arrange the tileset.
+- **Default**: high-resolution or some kind of realistic style;
+- **Abstract**: low-poly, line-art, vector art, abstractionism, etc;
+- **Devmode**: reveal how I name and arrange the tileset.
 
 ![devmode](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/sprites/sheets/devmode_01.png)
 
@@ -186,14 +188,14 @@ Then based on the initial tileset, I created several variations of it but with t
 > <details>
 > <summary>Including:</summary>
 > <ul>
-> <li> [Sketch style](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_04.png)</li>
-> <li> [Pen paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_05.png)</li>
-> <li> [Comic](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_06.png)</li>
-> <li> [Abstract expressionism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_07.png)</li>
-> <li> [Water color](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_07.png)</li>
-> <li> [Oil paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_11.png)</li>
-> <li> [Cubism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_13.png)</li>
-> <li> [Deconstructivism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_14.png)</li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_04.png">Sketch style</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_05.png">Pen paint</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_06.png">Comic</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_07.png">Abstract expressionism</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_07.png">Water color</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_11.png">Oil paint</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_13.png">Cubism</a></li>
+> <li> <a href="https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_14.png">Deconstructivism</a></li>
 > </ul>
 > </details>
 > 
@@ -211,17 +213,17 @@ Player is a simple eye, so the appearance is easy to code - just several ellipse
 
 Since it's a port of the Godot project, I will briefly explain the controller system here. I should cite that the basic concept comes from these two videos: [Improve your platformer's Jump](https://www.youtube.com/watch?v=2S3g8CgBG1g) and [Improve your platformer' with forces](https://www.youtube.com/watch?v=KbtcEVCM7bw).
 
-- Horizonontal Movement:
-  - Acceleration: pressing the direction key will give player an acceleration
-    - When in the air, the acceleration will be reduced
-  - High speed cap
-  - Friction to prevent immediate stop
-- Vertical Movement:
-  - Gravity: add gravity when falling to prevent "floating"
-  - Falling: High speed cap
-  - Jump: pressing the jump key will give player a jump force
-    - The longer you hold the jump key, the higher you will jump
-    - Using cyote time(allowing the player to jump for a short time when leaving the platform) to make the jump feel easier
+  - **Horizontal Movement**:
+    - **Acceleration**: pressing the direction key will give player an acceleration
+      - When in the air, the acceleration will be reduced
+    - **High speed cap**
+    - **Friction** to prevent immediate stop
+  - **Vertical Movement**:
+    - **Gravity**: add gravity when falling to prevent "floating"
+    - **Falling**: High speed cap
+    - **Jump**: pressing the jump key will give player a jump force
+      - The longer you hold the jump key, the higher you will jump
+      - Using **coyote time** (allowing the player to jump for a short time when leaving the platform) to make the jump feel easier
 
 #### Procedural Animation
 
@@ -419,21 +421,27 @@ classDiagram
     class Scene {
         +Layer[] layers
         +render()
+        +draw()
+        +isSolidAt(x, y)
     }
     class Player {
         +RigidBody body
-        +update()
+        +Vector eyePos
+        +update(scene)
+        +draw(mode)
     }
     class Snake {
         +SnakeBody body
         +SnakeMind mind
         +SnakeSense sense
-        +update()
+        +update(player)
+        +draw(mode)
     }
     class RigidBody {
         +Vector pos
         +Vector vel
         +applyGravity()
+        +resolveCollision()
     }
     
     Player *-- RigidBody
@@ -452,7 +460,7 @@ graph TD
     SM[SceneManager]
     S[Current Scene]
     P[Player Instance]
-    Sn[Snake Instances (Array)]
+    Sn[Snake Instances Array]
     L[Layers (Collision, Wall, BG)]
     T[Tiles]
 
@@ -503,3 +511,4 @@ flowchart TD
 - [Improve your platformer's Jump](https://www.youtube.com/watch?v=2S3g8CgBG1g)
 - [Improve your platformer' with forces](https://www.youtube.com/watch?v=KbtcEVCM7bw)
 - [A\* Pathfinding Algorithm](http://youtube.com/watch?v=9W8hNdEUFbc)
+- [Mermaid Editor](https://mermaid.live/edit)
