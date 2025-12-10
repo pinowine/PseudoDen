@@ -22,7 +22,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git clone https://x-access-token:${{ secrets.PARENT_REPO_TOKEN }}@github.com/z-chen02202510/Critical-Coding-Notebook.git parent
+          git clone https://x-access-token:${{ secrets.PARENT_REPO_TOKEN }}@git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook.git parent
 
           cp Midterm.md parent/Midterm.md
 
