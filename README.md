@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > This README file will be automatically deployed to CCI enterprise repo. Videos will not be rendered across repos. For better reading experience you can choose to read the [original Markdown file](https://github.com/pinowine/PseudoDen/blob/main/README.md#everyeye-everywhere-all-at-once).
 
-<sub>Ibupofennist, 2025. Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
+<sub>Ibuprofennist, 2025. Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
 </sub>
 
 <video controls src="https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI0OTQsIm5iZiI6MTc2NTMyMjE5NCwicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTExOTAzLTU3NjM1NzcyLWZiZjYtNGRiYi1iOTEyLTcwMDMxZDk4MmQzMy5tb3Y_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzE2MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNWNjODk2NzI1ODNiNzU0NzcwYjZkMzM5MWRjOTVmMmIzOGJhZDU2M2NlMTQwMTMxYzczMmVlMTdlZDQzYjA0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9uC5AEqEzufnZEKoJoLfrfLtJM67b--22GkYjxaAxDE"> </video>
