@@ -381,6 +381,7 @@ draw() {
 ## Coding Summary
 
 ```mermaid
+flowchart TD
 A[Page load] --> B[loadAssets()]
 B -->|fetch JSONs<br/>load images| C{assetsLoaded?}
 C -->|No| C
