@@ -1,0 +1,37 @@
+name: Sync README.md to Midterm.md in CCI account
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PseudoDen
+        uses: actions/checkout@v4
+
+      - name: Prepare Midterm.md
+        run:
+          cp README.md Midterm.md
+
+      - name: Clone parent repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git clone https://x-access-token:${{ secrets.PARENT_REPO_TOKEN }}@github.com/z-chen02202510/Critical-Coding-Notebook.git parent
+
+          cp Midterm.md parent Midterm.md
+
+          cd parent
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add Midterm.md
+          git commit -m "Sync Midterm.md from child repo README [skip ci]"
+          git push
