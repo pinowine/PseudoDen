@@ -1,6 +1,6 @@
 # Everyeye Everywhere All at Once
 
-> [!NOTE]
+> [!IMPORTANT]
 > This README file will be automatically deployed to CCI enterprise repo. Videos will not be rendered across repos. For better reading experience you can choose to read the [original Markdown file](https://github.com/pinowine/PseudoDen/blob/main/README.md#everyeye-everywhere-all-at-once).
 
 <sub>Iburpofennist, 2025. Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
@@ -96,7 +96,7 @@ sketch.js
 style.css
 ```
 
-> It's not the project tree now, because some of them are too big that I break them into smaller js files.
+> It's not the current project tree, because some of them are too big that I break them into smaller js files.
 
 ### World Building
 
@@ -211,7 +211,7 @@ Player is a simple eye, so the appearance is easy to code - just several ellipse
 
 #### Controller System
 
-Since it's a port of the Godot project, I will briefly explain the controller system here. I should cite that the basic concept comes from these two videos: [Improve your platformer's Jump](https://www.youtube.com/watch?v=2S3g8CgBG1g) and [Improve your platformer' with forces](https://www.youtube.com/watch?v=KbtcEVCM7bw).
+Since it's a port of the Godot project, I will briefly explain the controller system here. I should cite that the basic concept comes from these two videos: [Improve your platformer's Jump](https://www.youtube.com/watch?v=2S3g8CgBG1g) and [Improve your platformer with forces](https://www.youtube.com/watch?v=KbtcEVCM7bw).
 
   - **Horizontal Movement**:
     - **Acceleration**: pressing the direction key will give player an acceleration
@@ -512,4 +512,6 @@ flowchart TD
 - [Improve your platformer's Jump](https://www.youtube.com/watch?v=2S3g8CgBG1g)
 - [Improve your platformer' with forces](https://www.youtube.com/watch?v=KbtcEVCM7bw)
 - [A\* Pathfinding Algorithm](http://youtube.com/watch?v=9W8hNdEUFbc)
+- [p5 port of A\* Pathfinding Algorithm](https://editor.p5js.org/Cubo/sketches/aJaZQcIeT)
 - [Mermaid Editor](https://mermaid.live/edit)
+- [Github Actions](https://docs.github.com/en/actions/get-started/quickstart)
