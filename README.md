@@ -499,11 +499,11 @@ flowchart TD
 
 ## Technical Stack
 
-- p5.js
-- HTML/CSS/JS
-- Github + Netlify + Cloudflare: I use GitHub as source code repo, netlify as production page, and cloudflare as CDN. I use my subdomain pseudoden.ibuprofennist.com to host the game.
-- photoshop, figma
-- Gemini Nano: create several artstyles mentioned above
+- **p5.js**
+- **HTML/CSS/JS**: coding the intro scene.
+- **Github + Netlify + Cloudflare**: I use GitHub as source code repo, netlify as production page, and cloudflare as CDN. I use my subdomain `pseudoden.ibuprofennist.com` to host the game.
+- **Photoshop, Figma**: image editing.
+- **Gemini Nano**: create several artstyles mentioned above
 
 ## References
 
