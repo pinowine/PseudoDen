@@ -180,18 +180,24 @@ Then based on the initial tileset, I created several variations of it but with t
 <sub>Devmode tileset</sub>
 
 > [!NOTE]
-> I used generative AI here to create several art styles here, including:
+> 
+> I used generative AI here to create several art styles here.
 >
-> - [Sketch style](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_04.png)
-> - [Pen paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_05.png)
-> - [Comic](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_06.png)
-> - [Abstract expressionism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_07.png)
-> - [Water color](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_07.png)
-> - [Oil paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_11.png)
-> - [Cubism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_13.png)
-> - [Deconstructivism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_14.png)
->
->   Other images are created by figma or photoshop.
+> <details>
+> <summary>Including:</summary>
+> <ul>
+> <li> [Sketch style](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_04.png)</li>
+> <li> [Pen paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_05.png)</li>
+> <li> [Comic](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_06.png)</li>
+> <li> [Abstract expressionism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/abstract_07.png)</li>
+> <li> [Water color](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_07.png)</li>
+> <li> [Oil paint](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_11.png)</li>
+> <li> [Cubism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_13.png)</li>
+> <li> [Deconstructivism](https://github.com/pinowine/PseudoDen/tree/main/assets/sprites/sheets/default_14.png)</li>
+> </ul>
+> </details>
+> 
+> Other images are created by figma or photoshop.
 
 ![layout](https://raw.githubusercontent.com/pinowine/PseudoDen/main/assets/readme/layout-building-tool.png)
 
@@ -380,130 +386,106 @@ draw() {
 
 ## Coding Summary
 
-### Project Structure
+### Architecture
+
+High-level organization of the code modules.
+
+```mermaid
+flowchart LR
+    subgraph Entry ["Entry Point"]
+        A[index.html] --> B[sketch.js]
+    end
+    subgraph Core ["Core Managers"]
+        B --> C[SceneManager.js]
+        C --> D[World.js]
+    end
+    subgraph Entities ["Game Entities"]
+        C --> E[Player.js]
+        C --> F[Hunter.js]
+    end
+    subgraph Systems ["Systems & Utils"]
+        E --> G[RigidBody.js]
+        F --> G
+        F --> H[Pathfinding.js]
+    end
+```
+
+### Class Structure
+
+View of the main classes and their components.
 
 ```mermaid
 classDiagram
     class Scene {
-        +Object tileset
-        +Object layout
-        +Image tilesetImage
-        +Image bgImage
         +Layer[] layers
-        +Layer collisionLayer
-        +Layer wallLayer
-        +Layer bgLayer
         +render()
-        +draw()
-        +isSolidAt(x, y)
-        +hasLineOfSight(a, b)
     }
-
-    class Layer {
-        +int layer
-        +String type
-        +Graphics buffer
-        +Graphics maskBuffer
-        +Tile[] tiles
-        +renderToBuffer()
-        +draw()
-        +getTile(col, row)
-    }
-
-    class Tile {
-        +int x
-        +int y
-        +int id
-        +draw(buffer)
-    }
-
     class Player {
         +RigidBody body
-        +Vector eyePos
-        +update(scene)
-        +draw(mode)
-        +jump()
+        +update()
     }
-
+    class Snake {
+        +SnakeBody body
+        +SnakeMind mind
+        +SnakeSense sense
+        +update()
+    }
     class RigidBody {
         +Vector pos
         +Vector vel
-        +update(scene, input)
         +applyGravity()
-        +resolveCollision()
     }
+    
+    Player *-- RigidBody
+    Snake *-- SnakeBody
+    Snake *-- SnakeMind
+    Snake *-- SnakeSense
+    Scene *-- Layer
+```
 
-    class Snake {
-        +Scene scene
-        +SnakeNav nav
-        +AStarPathfinder pathfinder
-        +SnakeBody body
-        +SnakeSense sense
-        +SnakeMind mind
-        +update(player)
-        +draw(mode)
-    }
+### Instance Relationships
 
-    class SnakeBody {
-        +Vector head
-        +Vector[] segments
-        +update(dt)
-        +draw(alertState, mode)
-    }
+How objects relate to each other during the game execution.
 
-    class SnakeSense {
-        +update(player)
-    }
+```mermaid
+graph TD
+    SM[SceneManager]
+    S[Current Scene]
+    P[Player Instance]
+    Sn[Snake Instances (Array)]
+    L[Layers (Collision, Wall, BG)]
+    T[Tiles]
 
-    class SnakeMind {
-        +String state
-        +update(player)
-        +getTarget()
-    }
-
-    Scene "1" *-- "many" Layer
-    Layer "1" *-- "many" Tile
-    Player "1" *-- "1" RigidBody
-    Snake "1" *-- "1" SnakeBody
-    Snake "1" *-- "1" SnakeSense
-    Snake "1" *-- "1" SnakeMind
-    SnakeBody ..> SnakeNav : uses
+    SM -->|manages| S
+    SM -->|manages| P
+    SM -->|manages| Sn
+    S -->|contains| L
+    L -->|contains| T
 ```
 
 ### Game Logic
 
+The simplified loop that runs every frame.
+
 ```mermaid
-sequenceDiagram
-    participant Main as sketch.js (Draw Loop)
-    participant SceneManager
-    participant Player
-    participant Snake
-    participant Scene
-
-    Main->>Player: update(scene)
-    Player->>Player: Handle Input & Physics
-
-    loop Every Snake
-        Main->>Snake: update(player)
-        Snake->>Snake: Sense & Mind Update
-        Snake->>Snake: Pathfinding & Movement
+flowchart TD
+    Start([Frame Start]) --> Update
+    subgraph Update ["Update Phase"]
+        U1[Player Update] -->|Input/Physics| U2[RigidBody Update]
+        U3[Snake Update] -->|AI/Pathfinding| U4[Snake Body Move]
     end
-
-    Main->>Scene: draw()
-    Scene-->>Main: Render Layers
-
-    Main->>Player: draw()
-    Main->>Snake: draw()
-
-    Main->>SceneManager: checkSnakeEatPlayer()
-    alt Collision Detected
-        SceneManager->>SceneManager: resetEntities()
+    Update --> Render
+    subgraph Render ["Render Phase"]
+        R1[Draw Scene Layers] --> R2[Draw Player]
+        R2 --> R3[Draw Snakes]
     end
-
-    Main->>SceneManager: checkPlayerReachedEnd()
-    alt End Reached
-        SceneManager->>SceneManager: loadScene(random)
+    Render --> Checks
+    subgraph Checks ["Logic Checks"]
+        C1{Snake Eat Player?} -->|Yes| Reset[Reset Game]
+        C1 -->|No| C2{Reached End?}
+        C2 -->|Yes| Next[Load Next Scene]
     end
+    Checks --> Stop([Frame End])
 ```
 
 ## Technical Stack
