@@ -3,7 +3,7 @@
 <sub>Iburpofennist, 2025. Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
 </sub>
 
-<video controls src="https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI0OTQsIm5iZiI6MTc2NTMyMjE5NCwicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTExOTAzLTU3NjM1NzcyLWZiZjYtNGRiYi1iOTEyLTcwMDMxZDk4MmQzMy5tb3Y_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzE2MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNWNjODk2NzI1ODNiNzU0NzcwYjZkMzM5MWRjOTVmMmIzOGJhZDU2M2NlMTQwMTMxYzczMmVlMTdlZDQzYjA0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9uC5AEqEzufnZEKoJoLfrfLtJM67b--22GkYjxaAxDE"> </video>
+https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov
 
 > [!NOTE]
 >
@@ -43,7 +43,7 @@ So basically this project is highly attached to my previous works below, I will 
 - [Collage](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
 - One Godot DEMO of my personal work: Player controller, tilesets, tilemap, 2D platform game physics, etc.
 
-<video controls src="https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI4ODcsIm5iZiI6MTc2NTMyMjU4NywicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTEwNzgyLWEyZjdmYjNkLTczYmEtNDMwYS1hZjk4LTc5OGU2ZDllOTlmMi5NUDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzIzMDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMGI4ZDUxNDhiODQ1NzhkOWQwOTY4NGUyYWM5ODUxMDQ1YzhlMDgyMWY3ZWUwZWMzMDRiYWMzZjMwYWE4M2I4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9H_WSKKxfh1pd0gg1Urs4bMkuObjTOXkGdiPlBcjFL4"></video>
+https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4
 
 <sub>The records of the Godot-based DEMO. I ported the player control system, player appearance and tilemap system into p5.js. </sub>
 
