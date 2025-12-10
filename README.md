@@ -1,9 +1,12 @@
 # Everyeye Everywhere All at Once
 
+> [!NOTE]
+> This README file will be automatically deployed to CCI enterprise repo. Videos will not be rendered across repos. For better reading experience you can choose to read the [original Markdown file](https://github.com/pinowine/PseudoDen/blob/main/README.md#everyeye-everywhere-all-at-once).
+
 <sub>Iburpofennist, 2025. Source Code: [GitHub](https://github.com/pinowine/PseudoDen), Play Online: [Production page](https://pseudoden.ibuprofennist.com).
 </sub>
 
-https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov
+<video controls src="https://private-user-images.githubusercontent.com/119881770/524511903-57635772-fbf6-4dbb-b912-70031d982d33.mov?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI0OTQsIm5iZiI6MTc2NTMyMjE5NCwicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTExOTAzLTU3NjM1NzcyLWZiZjYtNGRiYi1iOTEyLTcwMDMxZDk4MmQzMy5tb3Y_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzE2MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNWNjODk2NzI1ODNiNzU0NzcwYjZkMzM5MWRjOTVmMmIzOGJhZDU2M2NlMTQwMTMxYzczMmVlMTdlZDQzYjA0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9uC5AEqEzufnZEKoJoLfrfLtJM67b--22GkYjxaAxDE"> </video>
 
 > [!NOTE]
 >
@@ -12,12 +15,12 @@ https://private-user-images.githubusercontent.com/119881770/524511903-57635772-f
 >
 > I have mentioned the code references a lot in the previous works, so I will skip the concepts/functions/algorithm in this list (to shorten the document, new stuff will be mentioned below):
 >
-> <ul><li>p5 drawing: startShape(), endShape(), vertex(), offscreen buffer, etc;</li>
-> <li>p5 vector and calculations: add(), sub(), mult(), div(), mag(), normalize(), dist(), etc;</li>
-> <li>OOP: constructor(), this, Class, new instance, etc;</li>
-> <li>p5/js maths: atan2(), abs(), etc;</li>
-> <li>js array methods: array.includes(), array.map(), array.forEach(), array.find(), etc;</li>
-> <li>JSON data import and storage.</li></ul>
+> <ul><li><strong>p5 drawing</strong>: <code>startShape()</code>, <code>endShape()</code>, <code>vertex()</code>, <code>offscreen buffer</code>, etc;</li>
+> <li><strong>p5 vector and calculations</strong>: <code>add()</code>, <code>sub()</code>, <code>mult()</code>, <code>mag()</code>, <code>normalize()</code>, etc;</li>
+> <li><strong>OOP</strong>: <code>constructor()</code>, <code>this</code>, <code>Class</code>, <code>new instance</code>, etc;</li>
+> <li><strong>p5/JS maths</strong>: <code>atan2()</code>, <code>abs()</code>, etc;</li>
+> <li><strong>JS array methods</strong>: <code>array.includes()</code>, <code>array.map()</code>, <code>array.forEach()</code>, <code>array.find()</code>, etc;</li>
+> <li><strong>JSON data</strong> import and storage.</li></ul>
 >
 > </details>
 
@@ -43,7 +46,7 @@ So basically this project is highly attached to my previous works below, I will 
 - [Collage](https://git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook/blob/main/Assignment7.md): The asset loading system (how to deal with JSON and images) and sprite-sheet cutting.
 - One Godot DEMO of my personal work: Player controller, tilesets, tilemap, 2D platform game physics, etc.
 
-https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4
+<video controls src="https://private-user-images.githubusercontent.com/119881770/524510782-a2f7fb3d-73ba-430a-af98-798e6d9e99f2.MP4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzMjI4ODcsIm5iZiI6MTc2NTMyMjU4NywicGF0aCI6Ii8xMTk4ODE3NzAvNTI0NTEwNzgyLWEyZjdmYjNkLTczYmEtNDMwYS1hZjk4LTc5OGU2ZDllOTlmMi5NUDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwOVQyMzIzMDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMGI4ZDUxNDhiODQ1NzhkOWQwOTY4NGUyYWM5ODUxMDQ1YzhlMDgyMWY3ZWUwZWMzMDRiYWMzZjMwYWE4M2I4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9H_WSKKxfh1pd0gg1Urs4bMkuObjTOXkGdiPlBcjFL4"></video>
 
 <sub>The records of the Godot-based DEMO. I ported the player control system, player appearance and tilemap system into p5.js. </sub>
 
@@ -373,6 +376,55 @@ draw() {
     if (layer.type === "collision") layer.draw();
   }
 }
+```
+
+## Coding Summary
+
+```mermaid
+A[Page load] --> B[loadAssets()]
+B -->|fetch JSONs<br/>load images| C{assetsLoaded?}
+C -->|No| C
+C -->|Yes| D[Show Intro Overlay]
+D --> E[User clicks<br/>Start Game]
+E --> F[startGame()]
+F --> G[loadScene(sceneType, index)]
+G --> H[Pick scene def<br/>(default / abstract / devmode)]
+H --> I[Create Scene(layerConfig,<br/>layoutConfig, tilesetConfig,<br/>tilesetImage, bgImage)]
+I --> J[Scene builds Layers<br/>(collision, wall, bg)]
+J --> K[Scene pre-renders each layer<br/>into offscreen buffers]
+K --> L[resetEntities()]
+L --> M[Create Player at SPAWN_TILE]
+L --> N[Spawn 5–8 Snakes on<br/>random non-collision wall tiles]
+M --> O[gameState = 'playing']
+N --> O
+
+subgraph Main Loop (draw)
+  P[draw()] --> Q{assetsLoaded<br/>AND gameState=='playing'?}
+  Q -->|No| P
+  Q -->|Yes| R[Update Player]
+  R --> S[Update each Snake]
+  S --> T[scene.draw()<br/>• draw masked bg<br/>• draw wall layer<br/>• draw collision layer]
+
+  T --> U[Draw Player]
+  U --> V[Draw Snakes<br/>(default / abstract / devmode visuals)]
+
+  V --> W[checkSnakeEatPlayer()]
+  W -->|Head touches player| L[resetEntities()]
+  W -->|No| X[checkPlayerReachedEnd()]
+
+  X -->|Reached END_TILE| Y[Pick next scene type<br/>default / abstract / devmode]
+  Y --> Z[loadScene(newType, newIndex)]
+  X -->|Not yet| P
+end
+
+subgraph Snake Update
+  S1[Snake.update(player)] --> S2[SnakeSense.update()<br/>• hearing<br/>• vision/LOS]
+  S2 --> S3[SnakeMind.update()<br/>FSM: IDLE/PATROL/SEARCH/CHASE/LOST]
+  S3 --> S4[SnakeMind.getTarget()]
+  S4 --> S5[A* pathfinding<br/>from head tile<br/>to target tile]
+  S5 --> S6[SnakeBody.update()<br/>• move head along path<br/>• drag segments to follow]
+  S6 --> S7[Snake.draw(mode)<br/>• default body + eyes<br/>• abstract line body<br/>• devmode + sensors/path]
+end
 ```
 
 ## Technical Stack
