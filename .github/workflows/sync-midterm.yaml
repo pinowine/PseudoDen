@@ -19,8 +19,8 @@ jobs:
 
       - name: Clone parent repo
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
 
           git clone https://x-access-token:${{ secrets.PARENT_REPO_TOKEN }}@git.arts.ac.uk/z-chen02202510/Critical-Coding-Notebook.git parent
 
@@ -33,5 +33,5 @@ jobs:
           fi
 
           git add Midterm.md
-          git commit -m "Sync Midterm.md from child repo README [skip ci]"
+          git commit -m "Sync Midterm.md from child repo README"
           git push
